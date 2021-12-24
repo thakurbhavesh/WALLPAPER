@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+      <title>IMAGE WALLPAPER</title>
+      <style>
+
+          .bg{
+          background:#ff4081;important;
+          }
+          .list-group-item.active{
+             animation: jello; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 12s;
+          background:lime;important;
+          border-color:red!important;
+          }
+          h5{
+         animation: flipInX ; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 16s;
+         }
+          p{
+          color:gold;
+         animation: swing ; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 6s;
+         }
+          p:hover{
+          color:silver;
+         animation: heartBeat ; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 6s;
+         }
+          h5:hover{
+          color:magenta;
+         animation: bounce ; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 6s;
+         }
+         img{
+         animation: zoomInUp  ; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 6s;
+         }
+         img:hover{
+         animation: swing ; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 12s;
+         }
+          a{
+         animation: tada  ; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 6s;
+         }
+         a:hover{
+         color:lime;
+         background-color:magenta;
+         animation: jello; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 12s;
+         }
+         .list-group{
+         color:red;
+         background-color:magenta;}
+         button{
+          color:red;
+         background-color:cyan!important;
+          animation: jello; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 6s;
+         }
+          #two{
+          color:green;
+         background-color:orange!important;
+          animation: rubberBand; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 6s;
+  border:4px solid silver;
+  text-shadow:2px 4px 4px maroon;
+         }
+          #two:hover{
+          color:gray;
+         background-color:lime!important;
+          animation: jello; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 6s;
+  border:4px solid black;
+  text-align:center;
+  text-shadow:2px 4px 2px yellow;
+         }
+          #one{
+          color:lime;
+         background-color:white!important;
+          animation: rubberBand; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 6s;
+  text-shadow:2px 4px 2px yellow;
+         }
+          button:hover{
+          color:red!important;
+         background-color:silver!impoertant;
+          animation: tada; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 12s;
+         }
+      </style>
+  </head>
+  <body>
+
+  {%include 'navbar.html'%}
+
+
+
+<div class="container-fluid">
+
+<!--  main code-->
+  <div class="row">
+
+    <div class="col-md-2">
+
+<!--      categories-->
+
+<div class="list-group mt-3">
+  <a href="/home" class="list-group-item list-group-item-action active">
+    All Images
+  </a>
+  {% for c in cats %}
+
+  <a href="/category/{{c.pk}}" class="list-group-item list-group-item-action" id="two">{{c.title}}</a>
+
+  {% endfor %}
+
+</div>
+
+    </div>
+
+    <div class="col-md-10">
+
+<!--      Images-->
+
+      <div class="row mt-3" >
+        <div class="col-md-12">
+
+          <div class="card-columns">
+
+
+            {% for i in images %}
+
+
+            <div class="card">
+  <img class="card-img-top" src="/media/{{i.image}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{i.title}}</h5>
+    <p class="card-text">{{i.description}}</p>
+    <a href="#" class="btn btn-danger" onclick="showModalwithImage('{{i.image}}')" id="one">View</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+            {% endfor %}
+
+
+
+          </div>
+
+
+
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal " id="image-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">BHAVESH SINGH</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="#!" id="image-show" class="img-fluid" alt="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script>
+    function showModalwithImage(imageUrl)
+    {
+     $('#image-modal').modal('show')
+     $("#image-show").attr('src',`/media/${imageUrl}`)
+    }
+  </script>
+
+
+
+
+  </body>
+</html>
